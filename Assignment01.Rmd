@@ -1,0 +1,176 @@
+---
+title: "Assignment01"
+author: "WenxinXie"
+date: "2023-10-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Q1 Create a data frame
+
+```{r}
+animals<- c("Snake","Ostrich","Cat","Spider")
+num_legs<- c(0,2,4,8)
+animals_df<- data.frame(animals,num_legs)
+print(animals_df)
+```
+
+## Q2 Check and delete objects
+
+```{r}
+rm(animals_df)
+ls()
+rm(num_legs)
+rm(animals_df)
+ls()
+
+```
+
+## Q3 Create a data frame in R Scripts
+
+finished in R scripts.
+
+## Q4 Create a data frame in R Markdown
+
+finished in this R markdown.
+
+## Q5 Matrix operations
+
+5.1 Generate a sequence of numbers starting at 12 and decreasing to 2 in steps of -2.
+
+```{r}
+x_vect<- seq(12,2,by = -2)
+x_vect
+```
+
+5.2 Convert the vector x vect into a matrix (with 2 rows and 3 coloumns) called X, using the matrix() function.
+
+```{r}
+X<- matrix(seq(12,2,by = -2),2,3)
+X
+```
+
+5.3 Create a 2 by 2 matrix called Y consisting of a sequence of four numbers from 1-4.
+
+```{R}
+Y<- matrix(seq(4),2,2)
+Y
+```
+
+5.4 Create another 2 by 2 matrix called Z starting at 4 and increasing to 10 in steps of 2.
+
+```{r}
+Z<- matrix(seq(4,10,by = 2),2,2)
+Z
+```
+
+5.5 Compute the transpose of Y and Z with funcition t().
+
+```{r}
+t(Y)
+t(Z)
+```
+
+5.6 [Matrix sums]Now compute the matrix sums Y + Z and Y + Z. The result in both cases should be the same.
+
+```{r}
+Y+Z
+Z+Y
+```
+
+5.7 [Matrix multiplication] Use R to compute the matrix products YZ and ZY.
+
+```{r}
+Y%*%Z
+Z%*%Y
+```
+
+5.8 Use R to compute the matrix product Y X. What happens if you attempt to compute the matrix product XY ?
+
+```{r}
+Y%*%X
+```
+
+X is 2x3, Y is 2x2, so we can't obtain the result of YX.
+
+5.9 [Matrix element-wise multiplication]Use R to compute the element-wise matrix products Y·Z and Y·Z.
+
+```{r}
+Y*Z
+Z*Y
+```
+
+5.10 [Matrix inverse]Compute the matrix inverse Y−1 via the solve() function.
+
+```{r}
+solve(Y)
+Y%*%solve(Y)
+solve(Y)%*%X
+```
+
+5.11 Can you do this (obtain the results of Y−1X) without first computing Y−1?
+
+```{r}
+solve(Y,X)
+```
+
+## Q6 Writing a function within R
+
+Within your script create a short function called myFirstRFunc which takes in a single numerical argument n and outputs the sum of all those numbers strictly below n which are divisible by either 2 or 7 or both.
+
+```{r}
+myFirstRFunc<- function(n)
+  {
+  #Function which takes in a single numerical argument n and outputs the sum of all those numbers strictly below n which are divisible by either 2 or 7 or both.
+  sum<- 0
+  for(i in 1:n-1)#i is btween 1 and n, and below n.
+    {
+    if(i%%2==0||i%%7==0)#is i divisible by either 2 and 7 or both
+      {
+      sum<- sum+i
+      }
+    }
+  return(sum)
+  }
+myFirstRFunc(14)
+myFirstRFunc(1000)
+```
+
+## Q7 Wave plot
+
+7.1 Define a vector called x consisting of a sequence which starts at 0 and goes to 20 in increments of 0.01.
+
+```{r}
+x<- seq(0,20,by = 0.01)
+```
+
+7.2 Next create a vector called y, which is of the same length as x, such that the ith entry of y is equal to the sin function of the ith entry of x.
+
+```{r}
+y<- sin(x)
+```
+
+7.3 Then create a data frame called sin df with two columns: x and y. You can inspect the first few rows of your data frame with the head() function.
+
+```{r}
+sin_df<- data.frame(x,y)
+head(sin_df,3)
+```
+
+7.4 Write a statement to plot sin df.
+
+```{r}
+plot(sin_df)
+```
+
+7.5 Insert the following mathematical formula into your Markdown file.
+
+$$sin^{2}(x)+cos^{2}(x)=1\tag{1.1}$$
+
+$$\sin(x)=\sum_{n=1}^{\infty}(-1)^{n+1}\cdot \frac{x^{2n-1}}{(2n-1)!}
+\approx x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}\ldots.\tag{1.2} $$
+
+$$ A=\left(\begin{matrix} a_{11} & a_{12}\\ a_{21} & a_{22} \end{matrix}\right). $$
